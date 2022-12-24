@@ -1,0 +1,79 @@
+https://google.github.io/comprehensive-rust/welcome.html
+
+// main entry point
+fn main {
+}
+-----
+TYPES
+-----
+Signed integers	        i8, i16, i32, i64, i128, isize	-10, 0, 1_000, 123i64
+Unsigned integers	      u8, u16, u32, u64, u128, usize	0, 123, 10u16
+Floating point nb       f32, f64	3.14, -10.0e20, 2f32
+Strings	                &str	    "foo", r#"\\"#
+Unicode scalar (32bits) char	    'a', 'α', '∞'
+Byte strings	          &[u8]	    b"abc", br#" " "#
+Booleans (8bits)        bool	    true, false
+----------------------------------------------------------------------------------
+
+// array de i8, de taille 10, tous init à 42
+let mut a: [i8; 10] = [42; 10];
+println!("a: {:?}", a);
+
+// tuple de un i8 associé à un bool
+let t: (i8, bool) = (7, true);
+println!("1st index: {}", t.0);
+
+// reference comme en c
+let mut x: i32 = 10;
+let ref_of_x: &mut i32 = &mut x;
+*ref_of_x: = 20;
+println!("x: {x}");
+
+// String vs &str
+&str an immutable reference to a string slice.
+String a mutable string buffer.
+
+// functions
+fn my_fn_name() -> u32 {  // u32 return value
+  let x: u32 = 2;
+  x * 10;                 // last line is the return value
+}
+
+- no function overloading
+- no default value
+- but func parameters can be generic
+fn pick_one<T>(a: T, b: T) -> T {
+    if std::process::id() % 2 == 0 { a } else { b }
+}
+
+// no implicit conversions unlike C++)
+
+// Memory
+
+String::from("Hello");  --> va mettre dans la heap mem
+
+// le ptr est passé (move)
+let name = String::from("Alice");
+say_hello(name);
+//say_hello(name);  // --> le ptr de name à été moved à la fn
+
+// While move semantics are the default, certain types are copied by default:
+// ex: i32
+// mon propre type doit use the copy semantics si je veux que ça fasse une copie
+// au lieu du move par défaut.
+// #[derive(Copy, Clone, Debug)]
+
+// Borrowing
+Instead of transferring ownership when calling a function, you can let a function borrow the value:
+fn add(p1: &Point, p2: &Point) -> Point {
+The add function borrows two points and returns a new point.
+The caller retains ownership of the inputs.
+
+A borrowed value has a lifetime:
+
+The lifetime can be elided: add(p1: &Point, p2: &Point) -> Point.
+Lifetimes can also be explicit: "&'a Point", &'document str.
+Read &'a Point as “a borrowed Point which is valid for at least the lifetime a”.
+
+Rendu à Afternoon exercice
+https://google.github.io/comprehensive-rust/exercises/day-1/book-library.html
