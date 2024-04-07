@@ -57,17 +57,5 @@ fn main() {
     println!("MY_CONST: {MY_CONST}");
     println!("MY_STATIC: {MY_STATIC}");
 
-    // le ptr est passé (move)
-    let name = String::from("Alice");
-    say_hello(name);
-    //say_hello(name);  // --> le ptr de name à été moved à la fn
-
-    // While move semantics are the default, certain types are copied by default:
-    // ex: i32
-    // mon propre type doit use the copy semantics si je veux que ça fasse une copie
-    // au lieu du move par défaut.
-    // #[derive(Copy, Clone, Debug)]
-
-    // Borrowinf
-
+    // While move semantics are the default, some types are copied by default, ex: i32
 }
