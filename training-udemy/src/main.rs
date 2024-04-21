@@ -1,7 +1,3 @@
-fn print_type_of<T>(_: &T) {
-  println!("{}", std::any::type_name::<T>())
-}
-
 fn stringvsstr() {
 
   let str1 = "hello";             // &str
@@ -11,43 +7,72 @@ fn stringvsstr() {
 
   println!("{}", str1);
   println!("{}", str4);
-
-  print_type_of(&str1);
-  print_type_of(&str4);
-
   str4 = "testrrrrrrrrrrrrrrrrrrr";
 
   println!("{}", str1);
   println!("{}", str4);
-
-  print_type_of(&str1);
-  print_type_of(&str4);
 }
 
-fn assignment2() {
+fn assignment2_1() {
   let val1 = 5;
   let val2 = 2;
   let ans = val1 % val2;
-
   println!("{}", ans);
-
 }
 
-// This is the main function
+fn assignment2_2() {
+  let mut vec1 = vec![2,4,6,8,10];
+  //let vec2 = Vec::new()["2,4,6,8,10"];
+
+  println!("{:?}", vec1);
+
+  vec1.remove(4);
+  vec1.push(12);
+
+  println!("{:?}", vec1);
+}
+
+fn concat_string(word : String) -> String{
+  let fixed_string = String::from("Hello");
+  let ret:String = fixed_string + &word;
+  ret
+}
+
+fn assignment2_3() {
+  let s = String::from("value");
+  //println!("{}", concat_string(" ---world".to_string()));
+  println!("{}", concat_string(s));
+}
+
+fn control_flow(i: i8){
+  print!("{} : ", i);
+  if i == 1 {
+    println!("equals 1");
+  }
+  else if i > 50 {
+    println!("gt 50");
+  }
+  else if i < 25 {
+    println!("lt 25");
+  }
+  else{
+    println!("between 25 and 50");
+  }
+}
+
+fn assignment2_4() {
+  control_flow(0);
+  control_flow(1);
+  control_flow(22);
+  control_flow(33);
+  control_flow(55);
+  control_flow(99);
+}
+
 fn main() {
-    // Statements here are executed when the compiled binary is called
-
-    // Print text to the console
-    println!("Hello World!");
-
-    // You can manipulate expressions more easily with block comments
-    // than with line comments. Try deleting the comment delimiters
-    // to change the result:
-    let x = 5 + /* 90 + */ 5;
-    println!("Is `x` 10 or 100? x = {}", x);
-
-    stringvsstr();
-    assignment2();
-
-
+    //stringvsstr();
+    //assignment2_1();
+    //assignment2_2();
+    //assignment2_3();
+    assignment2_4();
   }
